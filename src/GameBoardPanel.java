@@ -77,7 +77,7 @@ public class GameBoardPanel extends JPanel {
 
     // [TODO 2] Define a Listener Inner Class for all the editable Cells
     private class CellInputListener implements ActionListener, KeyListener {
-        private int attemps;
+        private int attempts;
         public CellInputListener() {
             this.attempts = 0;
         }
