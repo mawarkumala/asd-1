@@ -31,6 +31,7 @@ public class GameBoardPanel extends JPanel {
     private Cell[][] cells = new Cell[SudokuConstants.GRID_SIZE][SudokuConstants.GRID_SIZE];
     /** It also contains a Puzzle with array numbers and isGiven */
     private Puzzle puzzle = new Puzzle();
+    private boolean helpMode;
 
     /** Constructor */
     public GameBoardPanel() {
@@ -80,10 +81,13 @@ public class GameBoardPanel extends JPanel {
         }
     }
 
+
+
     /**
      * Return true if the puzzle is solved
      * i.e., none of the cell have status of TO_GUESS or WRONG_GUESS
      */
+
     public boolean isSolved() {
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
@@ -98,8 +102,14 @@ public class GameBoardPanel extends JPanel {
     public void restartGame() {
     }
 
+    public void setHelpMode(boolean helpMode) {
+        this.helpMode = helpMode;
+    }
+
     // [TODO 2] Define a Listener Inner Class for all the editable Cells
     private class CellInputListener implements ActionListener, KeyListener {
+        private boolean helpMode;
+
         @Override
         public void actionPerformed(ActionEvent e) {
             // Get a reference of the JTextField that triggers this action event
@@ -127,6 +137,11 @@ public class GameBoardPanel extends JPanel {
                 handleCellInput(sourceCell);
             }
         }
+
+        public void setHelpMode(boolean helpMode) {
+            this.helpMode = helpMode;
+        }
+
 
         private void handleCellInput(Cell sourceCell) {
             // Retrieve the input from the cell

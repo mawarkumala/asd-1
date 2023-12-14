@@ -10,8 +10,6 @@
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * The main Sudoku program
@@ -22,20 +20,21 @@ public class SudokuMain extends JFrame {
     // private variables
     GameBoardPanel board = new GameBoardPanel();
     JButton btnNewGame = new JButton("New Game");
-    JButton btnRestart = new JButton("Restart"); // New button for restart
+    JCheckBox cbHelp;
     JLabel timerLabel = new JLabel("Timer: 0 seconds");
     String playerName;
 
     // Timer variables
     private Timer timer;
     private int seconds;
+    private boolean help;
 
 
     // Constructor
     public SudokuMain() {
         // Prompt the user to enter their name
         playerName = JOptionPane.showInputDialog(this, "Enter your name:");
-
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
         cp.add(board, BorderLayout.CENTER);
@@ -43,16 +42,14 @@ public class SudokuMain extends JFrame {
         // Add buttons and timer label to the south to re-start the game via board.newGame() and restart
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(btnNewGame);
-        buttonPanel.add(btnRestart);
         buttonPanel.add(timerLabel);
         cp.add(buttonPanel, BorderLayout.EAST);
 
-
-        // Add ActionListener for New Game button
         btnNewGame.addActionListener(e -> startNewGame());
-
-        // Add ActionListener for Restart button
-        btnRestart.addActionListener(e -> restartGame());
+//        cbHelp = new JCheckBox("Help On", true);
+//        cbHelp.setFocusable(false);
+//        cbHelp.addActionListener(e -> setHelp());
+//        buttonPanel.add(cbHelp);
 
         // Initialize the game board and timer
         initializeTimer();
@@ -60,7 +57,8 @@ public class SudokuMain extends JFrame {
         board.newGame();
 
         pack();     // Pack the UI components, instead of using setSize()
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // to handle window-closing
+        // to handle window-closing
+        setLocationRelativeTo(null);
         setTitle("Sudoku");
         setVisible(true);
     }
@@ -74,13 +72,6 @@ public class SudokuMain extends JFrame {
 
         restartTimer();
         board.newGame();
-    }
-
-    // Method to restart the game
-    private void restartGame() {
-        restartTimer();
-        board.newGame();
-        JOptionPane.showMessageDialog(this, "Game Restarted!");
     }
 
     // Method to initialize the timer

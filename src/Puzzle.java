@@ -50,18 +50,19 @@ public class Puzzle {
     }
 
     private boolean fillSudoku(Stack<Integer> numStack) {
-        for (int row = 0; row < SudokuConstants.GRID_SIZE; row++) {
-            for (int col = 0; col < SudokuConstants.GRID_SIZE; col++) {
+        for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
+            for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
                 numbers[row][col] = 0;
             }
         }
+        // Fill the puzzle randomly
         return fillSudokuRecursively(0, 0, numStack);
     }
-
     private boolean fillSudokuRecursively(int row, int col, Stack<Integer> numStack) {
         if (row == SudokuConstants.GRID_SIZE - 1 && col == SudokuConstants.GRID_SIZE) {
             return true;
-        } else if (col == SudokuConstants.GRID_SIZE) {
+        }
+        if (col == SudokuConstants.GRID_SIZE) {
             row++;
             col = 0;
         }
@@ -78,6 +79,19 @@ public class Puzzle {
         }
         return false;
     }
+
+    private int getNextIndex(int row, int col) {
+        // Mendapatkan indeks sel berikutnya
+        for (int i = row; i < SudokuConstants.GRID_SIZE; i++) {
+            for (int j = (i == row) ? col + 1 : 0; j < SudokuConstants.GRID_SIZE; j++) {
+                if (numbers[i][j] == 0) {
+                    return i * SudokuConstants.GRID_SIZE + j;
+                }
+            }
+        }
+        return -1; // Jika seluruh sel telah diisi
+    }
+
 
     private boolean isSafe(int row, int col, int num) {
         return isSafeRow(row, num) && isSafeCol(col, num) && isSafeSubgrid(row - row % SudokuConstants.SUBGRID_SIZE, col - col % SudokuConstants.SUBGRID_SIZE, num);
@@ -160,7 +174,7 @@ public class Puzzle {
     }
 
     private void setGuesses(int cellsToGuess) {
-        int targetFilledCells = cellsToGuess + (SudokuConstants.GRID_SIZE * SudokuConstants.GRID_SIZE) / 2; // Menargetkan lebih banyak kotak yang terisi
+        int targetFilledCells = cellsToGuess + (SudokuConstants.GRID_SIZE * SudokuConstants.GRID_SIZE) / 2;
         Stack<Integer> indexes = new Stack<>();
         for (int i = 0; i < SudokuConstants.GRID_SIZE * SudokuConstants.GRID_SIZE; i++) {
             indexes.push(i);
@@ -172,7 +186,7 @@ public class Puzzle {
             int idx = indexes.pop();
             int row = idx / SudokuConstants.GRID_SIZE;
             int col = idx % SudokuConstants.GRID_SIZE;
-            if (numbers[row][col] != 0) {
+            if (numbers[row][col] != 0 && !isGiven[row][col]) {
                 isGiven[row][col] = true;
                 filledCells++;
             }
