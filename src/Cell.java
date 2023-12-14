@@ -51,7 +51,7 @@ public class Cell extends JTextField {
         super.setFont(FONT_NUMBERS);
     }
 
-    public Cell(int row, int col, int value) {
+     public Cell(int row, int col, int value) {
         this.row = row;
         this.col = col;
         this.value = value;
@@ -84,7 +84,8 @@ public class Cell extends JTextField {
             super.setBackground(BG_WRONG_GUESS);
         }
     }
-    public int getRow() {
+     public int getRow() {
+
         return row;
     }
 
