@@ -46,9 +46,6 @@ public class SudokuMain extends JFrame {
     }
 
     private void startNewGame() {
-        if (playerName == null || playerName.trim().isEmpty()) {
-            playerName = JOptionPane.showInputDialog(this, "Enter your name:");
-        }
         restartTimer();
         board.newGame();
     }
