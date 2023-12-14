@@ -32,6 +32,7 @@ public class SudokuMain extends JFrame {
 
     // Constructor
     public SudokuMain() {
+        JOptionPane.showMessageDialog(null, "Welcome! click OK to start game! Sudoko");
         // Prompt the user to enter their name
         playerName = JOptionPane.showInputDialog(this, "Enter your name:");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
