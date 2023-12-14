@@ -28,7 +28,7 @@ public class Puzzle {
                 isGiven[row][col] = false;
             }
         }
-        solveSudoku();
+        solutionSudoku();
         setGuesses(cellsToGuess);
         randomNumbers();
     }
@@ -40,7 +40,7 @@ public class Puzzle {
         }
 
         Collections.shuffle(numStack);
-        return fillSudoku(numStack);
+        return fillPuzzle(numStack);
     }
 
       private boolean fillPuzzle(Stack<Integer> numStack) {
