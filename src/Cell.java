@@ -39,6 +39,7 @@ public class Cell extends JTextField {
     int number;
     /** The status of this cell defined in enum CellStatus */
     CellStatus status;
+    private int value;
 
     /** Constructor */
     public Cell(int row, int col) {
@@ -48,6 +49,12 @@ public class Cell extends JTextField {
         // Inherited from JTextField: Beautify all the cells once for all
         super.setHorizontalAlignment(JTextField.CENTER);
         super.setFont(FONT_NUMBERS);
+    }
+
+     public Cell(int row, int col, int value) {
+        this.row = row;
+        this.col = col;
+        this.value = value;
     }
 
     /** Reset this cell for a new game, given the puzzle number and isGiven */
@@ -76,5 +83,17 @@ public class Cell extends JTextField {
         } else if (status == CellStatus.WRONG_GUESS) {    // from TO_GUESS
             super.setBackground(BG_WRONG_GUESS);
         }
+    }
+
+     public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public int getValue() {
+        return value;
     }
 }
