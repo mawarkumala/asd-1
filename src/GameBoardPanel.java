@@ -1,6 +1,10 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 
 public class GameBoardPanel extends JPanel {
     private static final long serialVersionUID = 1L;  // to prevent serial warning
@@ -73,6 +77,10 @@ public class GameBoardPanel extends JPanel {
 
     // [TODO 2] Define a Listener Inner Class for all the editable Cells
     private class CellInputListener implements ActionListener, KeyListener {
+        private int attemps;
+        public CellInputListener() {
+            this.attempts = 0;
+        }
         @Override
         public void actionPerformed(ActionEvent e) {
             // Get a reference of the JTextField that triggers this action event
@@ -101,24 +109,24 @@ public class GameBoardPanel extends JPanel {
         }
 
          private void handleCellInput(Cell sourceCell) {
-            // Retrieve the input from the cell
             String input = sourceCell.getText();
-
-            // Check if the input is a single digit
             if (input.length() == 1 && Character.isDigit(input.charAt(0))) {
                 int numberIn = Integer.parseInt(input);
 
-                // Check if the input is a valid single digit (1-9)
                 if (numberIn >= 1 && numberIn <= 9) {
-                    // Update the cell status and repaint
                     if (numberIn == sourceCell.number) {
                         sourceCell.status = CellStatus.CORRECT_GUESS;
                     } else {
                         sourceCell.status = CellStatus.WRONG_GUESS;
+                        attempts++;
+
+                        // Check if the maximum number of attempts is reached
+                        if (attempts >= 5) {
+                            JOptionPane.showMessageDialog(null, "Warning: You've reached 5 attempts!");
+                        }
                     }
                     sourceCell.paint();
 
-                    // Check if the player has solved the puzzle after this move
                     if (isSolved()) {
                         JOptionPane.showMessageDialog(null, "Congratulations!");
                     }
