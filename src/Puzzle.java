@@ -150,7 +150,6 @@ public class Puzzle {
                         if (!cellStack.isEmpty()) {
                             cell = cellStack.pop();
                         } else {
-                            System.out.println("Number of steps: " + time);
                             return false;
                         }
                     }
@@ -159,7 +158,6 @@ public class Puzzle {
                     curValue = cell.getValue() + 1;
                     numbers[curRow][curCol] = 0;
                 } else {
-                    System.out.println("Number of steps: " + time);
                     return false;
                 }
             }
