@@ -184,25 +184,6 @@ public class Puzzle {
         }
     }
 
-    private boolean isValidPlacement(int row, int col, int num) {
-        for (int i = 0; i < GRID_SIZE; i++) {
-            if (numbers[row][i] == num || numbers[i][col] == num) {
-                return false;
-            }
-        }
-
-        int subgridRowStart = row - row % SudokuConstants.SUBGRID_SIZE;
-        int subgridColStart = col - col % SudokuConstants.SUBGRID_SIZE;
-        for (int i = subgridRowStart; i < subgridRowStart + SudokuConstants.SUBGRID_SIZE; i++) {
-            for (int j = subgridColStart; j < subgridColStart + SudokuConstants.SUBGRID_SIZE; j++) {
-                if (numbers[i][j] == num) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
     private int[] getNextCell(int row, int col) {
         int[] nextCell = new int[2];
         col++;
