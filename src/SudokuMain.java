@@ -16,7 +16,6 @@ public class SudokuMain extends JFrame {
     GameBoardPanel board = new GameBoardPanel();
     JButton btnNewGame = new JButton("New Game");
     JLabel timerLabel = new JLabel("Timer: 0 seconds");
-    String playerName;
     private Timer timer;
     private int seconds;
 
