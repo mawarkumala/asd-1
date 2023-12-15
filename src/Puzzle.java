@@ -49,6 +49,7 @@ public class Puzzle {
                 numbers[row][col] = 0;
             }
         }
+          // Fill the puzzle randomly
         return fillPuzzleRec(0, 0, numStack);
     }
     
