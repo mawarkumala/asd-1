@@ -10,7 +10,6 @@
 
 import java.util.Collections;
 import java.util.Stack;
-import java.util.List;
 
 public class Puzzle {
     public static final int GRID_SIZE = 9;
@@ -43,17 +42,17 @@ public class Puzzle {
         return fillPuzzle(numStack);
     }
 
-      private boolean fillPuzzle(Stack<Integer> numStack) {
+    private boolean fillPuzzle(Stack<Integer> numStack) {
         for (int row = 0; row < GRID_SIZE; ++row) {
             for (int col = 0; col < GRID_SIZE; ++col) {
                 numbers[row][col] = 0;
             }
         }
-          // Fill the puzzle randomly
+        // Fill the puzzle randomly
         return fillPuzzleRec(0, 0, numStack);
     }
-    
-     private boolean fillPuzzleRec(int startRow, int startCol, Stack<Integer> numStack) {
+
+    private boolean fillPuzzleRec(int startRow, int startCol, Stack<Integer> numStack) {
         int row = startRow;
         int col = startCol;
 
@@ -76,7 +75,7 @@ public class Puzzle {
         }
         return false;
     }
-    
+
     private boolean isNumberValidInRow(int row, int num) {
         for (int col = 0; col < GRID_SIZE; col++) {
             if (numbers[row][col] == num) {
@@ -85,7 +84,7 @@ public class Puzzle {
         }
         return true;
     }
-    
+
     private boolean isNumberValidInColumn(int col, int num) {
         for (int row = 0; row < GRID_SIZE; row++) {
             if (numbers[row][col] == num) {
@@ -94,7 +93,7 @@ public class Puzzle {
         }
         return true;
     }
-    
+
     private boolean isNumberValidInSubgrid(int startRow, int startCol, int num) {
         for (int row = 0; row < SudokuConstants.SUBGRID_SIZE; row++) {
             for (int col = 0; col < SudokuConstants.SUBGRID_SIZE; col++) {
@@ -105,11 +104,11 @@ public class Puzzle {
         }
         return true;
     }
-    
+
     private boolean isValid(int row, int col, int num) {
         return isNumberValidInRow(row, num) && isNumberValidInColumn(col, num) && isNumberValidInSubgrid(row - row % SudokuConstants.SUBGRID_SIZE, col - col % SudokuConstants.SUBGRID_SIZE, num);
     }
-    
+
     private void solutionSudoku() {
         solution();
     }
@@ -150,7 +149,6 @@ public class Puzzle {
                         if (!cellStack.isEmpty()) {
                             cell = cellStack.pop();
                         } else {
-                            System.out.println("Number of steps: " + time);
                             return false;
                         }
                     }
@@ -159,7 +157,6 @@ public class Puzzle {
                     curValue = cell.getValue() + 1;
                     numbers[curRow][curCol] = 0;
                 } else {
-                    System.out.println("Number of steps: " + time);
                     return false;
                 }
             }

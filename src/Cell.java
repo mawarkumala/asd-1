@@ -22,8 +22,6 @@ public class Cell extends JTextField {
     public static final Color BG_GIVEN = new Color(240, 240, 240); // RGB
     public static final Color FG_GIVEN = Color.BLACK;
     public static final Color FG_NOT_GIVEN = new Color(255, 165, 0);
-    public static final Color FG_CORRECT_GUESS = Color.black;
-    public static final Color FG_WRONG_GUESS = Color.white;
     public static final Color BG_TO_GUESS  = new Color(173, 216, 230);
     public static final Color BG_CORRECT_GUESS = new Color(144, 238, 144);
     public static final Color BG_WRONG_GUESS   = new Color(255, 69, 0);

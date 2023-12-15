@@ -52,7 +52,6 @@ public class SudokuMain extends JFrame {
         setLocationRelativeTo(null);
         setTitle("Sudoku");
         setVisible(true);
-        setResizable(false);
     }
 
     // Method to start a new game
