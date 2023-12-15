@@ -65,7 +65,7 @@ public class Puzzle {
         }
 
         for (int num : numStack) {
-            if (isNumberPlacementValid(row, col, num)) {
+            if (isValid(row, col, num)) {
                 numbers[row][col] = num;
                 if (fillPuzzleRec(row, col + 1, numStack)) {
                     return true;
@@ -105,7 +105,7 @@ public class Puzzle {
         return true;
     }
     
-    private boolean isNumberPlacementValid(int row, int col, int num) {
+    private boolean isValid(int row, int col, int num) {
         return isNumberValidInRow(row, num) && isNumberValidInColumn(col, num) && isNumberValidInSubgrid(row - row % SudokuConstants.SUBGRID_SIZE, col - col % SudokuConstants.SUBGRID_SIZE, num);
     }
     
