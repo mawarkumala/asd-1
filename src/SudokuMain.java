@@ -42,6 +42,7 @@ public class SudokuMain extends JFrame {
         setLocationRelativeTo(null);
         setTitle("Sudoku");
         setVisible(true);
+        setResizable(false);
     }
 
     private void startNewGame() {
