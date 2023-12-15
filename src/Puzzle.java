@@ -128,7 +128,7 @@ public class Puzzle {
 
             boolean foundValidValue = false;
             while (curValue <= GRID_SIZE) {
-                if (isValidPlacement(curRow, curCol, curValue)) {
+                if (isValid(curRow, curCol, curValue)) {
                     foundValidValue = true;
                     break;
                 }
