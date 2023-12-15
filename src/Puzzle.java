@@ -10,7 +10,6 @@
 
 import java.util.Collections;
 import java.util.Stack;
-import java.util.List;
 
 public class Puzzle {
     public static final int GRID_SIZE = 9;
