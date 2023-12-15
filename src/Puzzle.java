@@ -21,8 +21,8 @@ public class Puzzle {
     }
 
     public void newPuzzle(int cellsToGuess) {
-        for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
-            for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
+        for (int row = 0; row < GRID_SIZE; ++row) {
+            for (int col = 0; col < GRID_SIZE; ++col) {
                 numbers[row][col] = 0;
                 isGiven[row][col] = false;
             }
@@ -34,7 +34,7 @@ public class Puzzle {
 
     private boolean randomNumbers() {
         Stack<Integer> numStack = new Stack<>();
-        for (int i = 1; i <= SudokuConstants.GRID_SIZE; i++) {
+        for (int i = 1; i <= GRID_SIZE; i++) {
             numStack.push(i);
         }
 
@@ -185,7 +185,7 @@ public class Puzzle {
     }
 
     private boolean isValidPlacement(int row, int col, int num) {
-        for (int i = 0; i < SudokuConstants.GRID_SIZE; i++) {
+        for (int i = 0; i < GRID_SIZE; i++) {
             if (numbers[row][i] == num || numbers[i][col] == num) {
                 return false;
             }
