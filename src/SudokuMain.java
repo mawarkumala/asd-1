@@ -10,6 +10,10 @@
 
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
 
 //Mendeklarasikan kelas SudokuMain yang merupakan turunan dari kelas JFrame, yang digunakan untuk membuat frame GUI.
 public class SudokuMain extends JFrame {
@@ -22,6 +26,7 @@ public class SudokuMain extends JFrame {
     JLabel timerLabel = new JLabel("Timer: 0 seconds");
     private Timer timer;
     private int seconds;
+    private Object mainPanel;
 
     // Constructor
     public SudokuMain() {
@@ -38,6 +43,20 @@ public class SudokuMain extends JFrame {
         buttonPanel.add(btnNewGame);
         buttonPanel.add(timerLabel);
         cp.add(buttonPanel, BorderLayout.EAST);
+        // Create menu bar
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+
+        // Create "About Us" menu
+        JMenu aboutMenu = new JMenu("About");
+        menuBar.add(aboutMenu);
+
+        // Create "About Us" menu item
+        JMenuItem aboutUsItem = new JMenuItem("About Us");
+        aboutMenu.add(aboutUsItem);
+
+        // Add action listener to "About Us" menu item
+        aboutUsItem.addActionListener(e -> showAboutUsDialog());
 
         //Menambahkan action listener untuk tombol "New Game" yang akan memanggil metode startNewGame().
         btnNewGame.addActionListener(e -> startNewGame());
@@ -52,6 +71,11 @@ public class SudokuMain extends JFrame {
         setLocationRelativeTo(null);
         setTitle("Sudoku");
         setVisible(true);
+    }
+
+    private void showAboutUsDialog() {
+        AboutUs aboutUs = new AboutUs(this);
+        aboutUs.setVisible(true);
     }
 
     // Method to start a new game
@@ -92,7 +116,7 @@ public class SudokuMain extends JFrame {
         // Run GUI codes in the Event-Dispatching thread for thread safety
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new SudokuMain(); 
+                new SudokuMain();
             }
         });
     }
